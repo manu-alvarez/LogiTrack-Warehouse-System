@@ -40,6 +40,42 @@ El sistema organiza los pedidos en **7 etapas** visuales:
 
 Consulta el [Manual Operativo](docs/MANUAL_OPERATIVO.md) para conocer las reglas de oro del almacén y los procedimientos estándar.
 
+---
+
+## Caso de Estudio: Simulación de Pico de Trabajo
+
+### Contexto
+
+Durante 4 días de operación intensiva, LogiTrack gestionó **28 pedidos simultáneos** de forma organizada y sin pérdida de información.
+
+### Distribución del Flujo
+
+| Etapa | Pedidos | Estado |
+|-------|---------|--------|
+| 📥 Recepción | 5 | Nuevos (día actual) |
+| 🔥 PRIORIDAD | 6 | Urgentes con vencimiento HOY |
+| 🛠️ Preparación | 5 | En proceso (~50% completados) |
+| 📦 Embalaje | 3 | Listos para packing |
+| 🏷️ Listo | 2 | Esperando recogida |
+| 🚚 Enviados | 8 | Completados (últimos 2 días) |
+| ⚠️ Incidencias | 6 | Problemas documentados |
+
+### Resultados Clave
+
+- **0 pedidos perdidos**: Cada pedido tiene seguimiento visual desde entrada hasta salida
+- **Incidencias documentadas**: Falta de stock, direcciones incorrectas y duplicados identificados antes de afectar al cliente
+- **Priorización efectiva**: Pedidos VIP con fechas de vencimiento siempre visibles en la columna de prioridad
+- **Transportistas identificados**: Etiquetas de color (🔵 DHL, 🟠 SEUR, 🟣 Local) permiten agrupar envíos
+
+### Lecciones Aprendidas
+
+1. **El sistema de 7 columnas** permite ver de un vistazo el cuello de botella del almacén
+2. **Los checklists al 50%** muestran pedidos que necesitan atención prioritaria
+3. **Las incidencias separadas** evitan que bloqueen el flujo normal de trabajo
+4. **Las portadas de color** destacan visualmente los pedidos críticos
+
+---
+
 ## Licencia
 
 MIT License - Uso libre para cualquier propósito.
