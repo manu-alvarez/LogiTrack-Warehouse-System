@@ -1,0 +1,38 @@
+name: LogiTrack portable documentation
+
+on:
+  push:
+    branches: [fix/portable-logitrack-20261124]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate scripts without touching Trello
+        run: |
+          bash -n scripts/setup_trello.sh
+          python -m compileall -q scripts
+      - name: Install PDF generator dependencies
+        run: python -m pip install reportlab pillow pypdf
+      - name: Generate portable PDF into temporary output
+        run: |
+          LOGITRACK_OUTPUT_PATH="$RUNNER_TEMP/logitrack.pdf" python scripts/generate_pdf.py
+          python - <<'PY'
+          from pathlib import Path
+          import os
+          from pypdf import PdfReader
+          p=Path(os.environ['RUNNER_TEMP'])/'logitrack.pdf'
+          assert p.stat().st_size>1000
+          assert len(PdfReader(p).pages)==2
+          print('PASS: two-page portable LogiTrack guide PDF generated')
+          PY
