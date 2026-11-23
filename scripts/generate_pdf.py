@@ -13,10 +13,12 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from PIL import Image
 import os
+from pathlib import Path
 
 # Configuration
-ARTIFACTS_DIR = "/Users/manu/.gemini/antigravity/brain/a11ea222-e1b6-4c62-bb45-254407a6117d"
-OUTPUT_PATH = "/Users/manu/Desktop/LogiTrack/LogiTrack_Presentacion_Rapida.pdf"
+ROOT = Path(__file__).resolve().parents[1]
+ARTIFACTS_DIR = os.environ.get("LOGITRACK_ARTIFACTS_DIR", str(ROOT / "assets"))
+OUTPUT_PATH = os.environ.get("LOGITRACK_OUTPUT_PATH", str(ROOT / "LogiTrack_Presentacion_Rapida.pdf"))
 
 # Colors
 PRIMARY_BLUE = HexColor('#0079BF')
