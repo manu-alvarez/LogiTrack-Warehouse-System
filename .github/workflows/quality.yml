@@ -2,7 +2,7 @@ name: LogiTrack portable documentation
 
 on:
   push:
-    branches: [fix/portable-logitrack-20261124]
+    branches: [main]
   pull_request:
     branches: [main]
 
